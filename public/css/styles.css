@@ -86,7 +86,6 @@ nav ul li {
 .hero {
   width: 100%;
   position: relative;
-  /* text-align: center; */
   color: white;
 }
 
@@ -116,10 +115,11 @@ nav ul li {
 
 .cta-button {
   background-color: rgb(88, 130, 221);
-  color: white;
+  color: black;
   padding: 10px 20px;
   border-radius: 5px;
   text-decoration: none;
+  margin-bottom: 10px;
 }
 
 .two-column {
@@ -143,7 +143,7 @@ nav ul li {
   padding: 15px;
   margin: 15px;
   width: 40%;
-  background-color: cyan;
+  background-color: rgb(88, 130, 221);
   text-align: center;
 }
 
@@ -154,6 +154,7 @@ nav ul li {
 
 .card-link {
   font-weight: bold;
+  color: black;
 }
 
 .card img {
