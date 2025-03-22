@@ -32,27 +32,33 @@ Util.buildClassificationGrid = async function(data){
     if(data.length > 0){
       grid = '<ul id="inv-display">'
       data.forEach(vehicle => { 
-        grid += '<li>'
+        grid += '<li class="vehicle-card">'
+        grid += '<div class="vehicle-card-inner">'
+        // Image container with consistent aspect ratio
+        grid += '<div class="vehicle-image-container">'
         grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
         + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
-        + 'details"><img src="' + vehicle.inv_thumbnail 
+        + ' details"><img src="' + vehicle.inv_thumbnail 
         +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
         +' on CSE Motors" /></a>'
-        grid += '<div class="namePrice">'
-        grid += '<hr />'
-        grid += '<h2>'
-        grid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
-        + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
-        + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
-        grid += '</h2>'
-        grid += '<span>$' 
-        + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
         grid += '</div>'
+        
+        // Vehicle info section
+        grid += '<div class="vehicle-info">'
+        grid += '<h3>' + vehicle.inv_make + ' ' + vehicle.inv_model + '</h3>'
+        grid += '<div class="vehicle-year">' + vehicle.inv_year + '</div>'
+        grid += '<div class="vehicle-price">$' 
+        + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</div>'
+        grid += '<a href="../../inv/detail/' + vehicle.inv_id 
+        + '" class="view-vehicle-btn">View Details</a>'
+        grid += '</div>'
+        
+        grid += '</div>' // Close vehicle-card-inner
         grid += '</li>'
       })
       grid += '</ul>'
     } else { 
-      grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+      grid = '<p class="notice">Sorry, no matching vehicles could be found.</p>'
     }
     return grid
 }
