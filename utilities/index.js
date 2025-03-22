@@ -57,6 +57,51 @@ Util.buildClassificationGrid = async function(data){
     return grid
 }
 
+Util.buildInventoryView = async function(data){
+  let grid
+  if(data !== undefined){
+    grid = '<div id="vehicle-details">'
+    
+    grid += '<div class="inv-row">'
+    grid += '<div class="inv-image-col">'
+    grid += '<img class="inv-image" src="' + data.inv_image + '" alt="Image of ' + data.inv_make + ' ' + data.inv_model + ' on CSE Motors" />'
+    grid += '</div>'
+    
+    grid += '<div class="inv-details-col">'
+    grid += '<div class="price-banner">$' + new Intl.NumberFormat('en-US').format(data.inv_price) + '</div>'
+    
+    grid += '<div class="details-box">'
+    grid += '<h3>Vehicle Details</h3>'
+    grid += '<ul class="vehicle-specs">'
+    grid += '<li><span>Make:</span> ' + data.inv_make + '</li>'
+    grid += '<li><span>Model:</span> ' + data.inv_model + '</li>'
+    grid += '<li><span>Year:</span> ' + data.inv_year + '</li>'
+    grid += '<li><span>Color:</span> ' + data.inv_color + '</li>'
+    grid += '<li><span>Mileage:</span> ' + new Intl.NumberFormat('en-US').format(data.inv_miles) + ' miles</li>'
+    grid += '<li><span>Body:</span> ' + data.classification_name + '</li>'
+    grid += '</ul>'
+    grid += '</div>'
+    
+    grid += '<div class="cta-container">'
+    grid += '<a href="#" class="dealer-cta">Contact Dealer</a>'
+    grid += '<a href="#" class="test-drive-cta">Schedule Test Drive</a>'
+    grid += '</div>'
+    
+    grid += '</div>'
+    grid += '</div>'
+    
+    grid += '<div class="description-section">'
+    grid += '<h3>Vehicle Description</h3>'
+    grid += '<p>' + data.inv_description + '</p>'
+    grid += '</div>'
+    
+    grid += '</div>'
+  } else {
+    grid = '<p class="notice">Sorry, no matching vehicle could be found.</p>'
+  }
+  return grid
+}
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
