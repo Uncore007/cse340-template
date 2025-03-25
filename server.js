@@ -33,11 +33,25 @@ app.use(static)
 app.get("/", utilities.handleErrors(baseController.buildHome))
 
 // Inventory Routes
-app.use("/inv", inventoryRoute)
+app.use("/inv", utilities.handleErrors(inventoryRoute))
+
+app.get("/trigger-error", utilities.handleErrors(baseController.triggerError))
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
-  next({status: 404, message: 'Sorry, we appear to have lost that page.'})
+  // next({status: 404, message: 'Sorry, we appear to have lost that page.'})
+
+  let nav = await utilities.getNav()
+  let message;
+
+    message = `<div class="error"><p>404 Cannot find page</p>
+               <p>Our team has been notified and is working to resolve the issue.</p></div>`;
+  
+  res.render("errors/error", {
+    title: "404 Error",
+    message,
+    nav
+  })
 })
 
 /* ***********************
@@ -47,7 +61,12 @@ app.use(async (req, res, next) => {
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
+
+  let message;
+
+  message = `<div class="error"><p>We apologize for the inconvenience. Our system encountered an unexpected error.</p>
+              <p>Our team has been notified and is working to resolve the issue.</p></div>`;
+  // if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
   res.render("errors/error", {
     title: err.status || 'Server Error',
     message,
