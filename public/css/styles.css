@@ -75,6 +75,12 @@ nav ul {
 
 nav ul li {
   padding: 10px;
+  font-weight: bold;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
 }
 
 /* Main body */
@@ -417,4 +423,13 @@ nav ul li {
   .vehicle-info {
     padding: 10px;
   }
+}
+
+.error {
+  width: 100%;
+  background-image: url('/images/site/error.webp');
+  background-size: fit;
+  background-position: center;
+  height: 300px;
+  background-color: alpha(0, 0, 0, 0.5);
 }
