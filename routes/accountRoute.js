@@ -5,9 +5,16 @@ const utilities = require("../utilities/")
 const regValidate = require('../utilities/account-validation')
 
 router.get("/", accController.buildAccount)
-router.get("/login", accController.buildLogin)
-router.get("/register", accController.buildRegister)
 
+router.get("/login", accController.buildLogin)
+router.post(
+    "/login",
+    (req, res) => {
+      res.status(200).send('login process')
+    }
+  )
+
+router.get("/register", accController.buildRegister)
 router.post('/register',
     regValidate.registationRules(),
     regValidate.checkRegData,
