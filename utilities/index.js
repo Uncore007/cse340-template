@@ -108,71 +108,71 @@ Util.buildInventoryView = async function(data){
   return grid
 }
 
-Util.buildLoginGrid = async function(){
-  let grid = '<div class="login-form">'
-  grid += '<h2>Login</h2>'
-  grid += '<form action="/account/login" method="post">'
-  grid += '<div class="form-group">'
-  grid += '<label for="username">Username</label>'
-  grid += '<input type="text" name="username" id="username" required />'
-  grid += '</div>'
-  grid += '<div class="form-group">'
-  grid += '<label for="password">Password</label>'
-  grid += '<input type="password" name="password" id="password" required />'
-  grid += '</div>'
-  grid += '<button type="submit">Login</button>'
-  grid += '</form>'
-  grid += '<a href="/account/register" class="register-link">Register</a>'
-  grid += '</div>'
-  return grid
-}
+// Util.buildLoginGrid = async function(){
+//   let grid = '<div class="login-form">'
+//   grid += '<h2>Login</h2>'
+//   grid += '<form action="/account/login" method="post">'
+//   grid += '<div class="form-group">'
+//   grid += '<label for="username">Username</label>'
+//   grid += '<input type="text" name="username" id="username" required />'
+//   grid += '</div>'
+//   grid += '<div class="form-group">'
+//   grid += '<label for="password">Password</label>'
+//   grid += '<input type="password" name="password" id="password" required />'
+//   grid += '</div>'
+//   grid += '<button type="submit">Login</button>'
+//   grid += '</form>'
+//   grid += '<a href="/account/register" class="register-link">Register</a>'
+//   grid += '</div>'
+//   return grid
+// }
 
-Util.buildRegisterGrid = async function(){
-  let grid = '<div class="login-form">'
-  grid += '<h2>Register</h2>'
-  grid += '<form action="/account/register" method="post">'
+// Util.buildRegisterGrid = async function(){
+//   let grid = '<div class="login-form">'
+//   grid += '<h2>Register</h2>'
+//   grid += '<form action="/account/register" method="post">'
   
-  // First name field
-  grid += '<div class="form-group">'
-  grid += '<label for="first_name">First Name</label>'
-  grid += '<input type="text" name="first_name" id="first_name" required />'
-  grid += '</div>'
+//   // First name field
+//   grid += '<div class="form-group">'
+//   grid += '<label for="first_name">First Name</label>'
+//   grid += '<input type="text" name="first_name" id="first_name" required />'
+//   grid += '</div>'
   
-  // Last name field
-  grid += '<div class="form-group">'
-  grid += '<label for="last_name">Last Name</label>'
-  grid += '<input type="text" name="last_name" id="last_name" required />'
-  grid += '</div>'
+//   // Last name field
+//   grid += '<div class="form-group">'
+//   grid += '<label for="last_name">Last Name</label>'
+//   grid += '<input type="text" name="last_name" id="last_name" required />'
+//   grid += '</div>'
   
-  // Email field
-  grid += '<div class="form-group">'
-  grid += '<label for="email">Email Address</label>'
-  grid += '<input type="email" name="email" id="email" required />'
-  grid += '</div>'
+//   // Email field
+//   grid += '<div class="form-group">'
+//   grid += '<label for="email">Email Address</label>'
+//   grid += '<input type="email" name="email" id="email" required />'
+//   grid += '</div>'
   
-  // Password field
-  grid += '<div class="form-group">'
-  grid += '<label for="password">Password</label>'
-  grid += '<input type="password" name="password" id="password" required />'
-  grid += '</div>'
+//   // Password field
+//   grid += '<div class="form-group">'
+//   grid += '<label for="password">Password</label>'
+//   grid += '<input type="password" name="password" id="password" required />'
+//   grid += '</div>'
   
-  // Password requirements
-  grid += '<div class="password-requirements">'
-  grid += '<p>Password requirements:</p>'
-  grid += '<ul>'
-  grid += '<li>12 characters in length, minimum</li>'
-  grid += '<li>Contain at least 1 capital letter</li>'
-  grid += '<li>Contain at least 1 number</li>'
-  grid += '<li>Contain at least 1 special character</li>'
-  grid += '</ul>'
-  grid += '</div>'
+//   // Password requirements
+//   grid += '<div class="password-requirements">'
+//   grid += '<p>Password requirements:</p>'
+//   grid += '<ul>'
+//   grid += '<li>12 characters in length, minimum</li>'
+//   grid += '<li>Contain at least 1 capital letter</li>'
+//   grid += '<li>Contain at least 1 number</li>'
+//   grid += '<li>Contain at least 1 special character</li>'
+//   grid += '</ul>'
+//   grid += '</div>'
   
-  grid += '<button type="submit">Register</button>'
-  grid += '</form>'
-  grid += '<a href="/account/login" class="register-link">Login</a>'
-  grid += '</div>'
-  return grid
-}
+//   grid += '<button type="submit">Register</button>'
+//   grid += '</form>'
+//   grid += '<a href="/account/login" class="register-link">Login</a>'
+//   grid += '</div>'
+//   return grid
+// }
 
 /* ****************************************
  * Middleware For Handling Errors
