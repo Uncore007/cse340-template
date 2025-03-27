@@ -9,10 +9,9 @@ router.get("/", accController.buildAccount)
 router.get("/login", accController.buildLogin)
 router.post(
     "/login",
-    (req, res) => {
-      res.status(200).send('login process')
-    }
-  )
+    regValidate.loginRules(),
+    regValidate.checkLoginData,
+    utilities.handleErrors(accController.loginAccount))
 
 router.get("/register", accController.buildRegister)
 router.post('/register',
