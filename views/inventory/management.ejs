@@ -1,0 +1,18 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+<% } else {
+    res.redirect('/')
+} %>
+
+<%- messages() %>
+
+<div class="management-container">
+    <h2>Vehicle Management</h2>
+    <p>Welcome to the vehicle inventory management area. Please select from the options below:</p>
+    
+    <ul class="management-options">
+        <li><a href="/inv/add-classification">Add New Classification</a></li>
+        <li><a href="/inv/add-inventory">Add New Vehicle</a></li>
+    </ul>
+</div>
+
