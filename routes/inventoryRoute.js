@@ -23,4 +23,15 @@ router.post(
   invController.addClassification
 );
 
+// Route to build add inventory view
+router.get("/add-inventory", invController.buildAddInventory);
+
+// Route to process add inventory form
+router.post(
+  "/add-inventory",
+  invValidate.inventoryRules(),
+  invValidate.checkInventoryData,
+  invController.addInventory
+);
+
 module.exports = router;
