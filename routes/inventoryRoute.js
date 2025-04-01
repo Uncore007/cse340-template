@@ -15,7 +15,6 @@ router.get("/type/:classificationId", invController.buildByClassificationId);
 
 // Route to build add classification view
 router.get("/add-classification", invController.buildAddClassification);
-
 // Route to process add classification form
 router.post(
   "/add-classification",
@@ -26,7 +25,6 @@ router.post(
 
 // Route to build add inventory view
 router.get("/add-inventory", invController.buildAddInventory);
-
 // Route to process add inventory form
 router.post(
   "/add-inventory",
@@ -36,5 +34,8 @@ router.post(
 );
 
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
+// Route to build edit inventory view
+router.get("/edit/:inventoryId", utilities.handleErrors(invController.editInventoryView));
 
 module.exports = router;
