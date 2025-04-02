@@ -19,7 +19,6 @@
     <p class="form-instructions">All fields are required.</p>
     
     <form id="updateInventoryForm" action="/inv/update" method="post">
-        <input type="hidden" name="inv_id" value="<%= locals.inv_id %>">
         <div class="form-group">
             <label for="classificationList">Classification:</label>
             <%- classificationSelect %>
