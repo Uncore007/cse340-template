@@ -224,6 +224,58 @@ async function updateAccount(req, res, next) {
   }
 }
 
+/* ****************************************
+ *  Process password update
+ * *************************************** */
+async function updatePassword(req, res, next) {
+  let nav = await utilities.getNav()
+  const { account_password, account_id } = req.body
+  
+  // Make sure logged in user is only updating their own account
+  if (parseInt(account_id) !== res.locals.accountData.account_id) {
+    req.flash("notice", "You don't have permission to update this account")
+    return res.redirect("/account/")
+  }
+  
+  let hashedPassword
+  try {
+    // regular password and cost (salt is generated automatically)
+    hashedPassword = await bcrypt.hashSync(account_password, 10)
+  } catch (error) {
+    req.flash("notice", 'Sorry, there was an error processing the password update.')
+    const accountData = await accModel.getAccountById(account_id)
+    res.status(500).render("account/update", {
+      title: "Update Account",
+      nav,
+      errors: null,
+      account_firstname: accountData.account_firstname,
+      account_lastname: accountData.account_lastname,
+      account_email: accountData.account_email,
+      account_id
+    })
+    return
+  }
+  
+  const updateResult = await accModel.updatePassword(account_id, hashedPassword)
+  
+  if (updateResult) {
+    req.flash("notice", "Password updated successfully")
+    return res.redirect("/account/")
+  } else {
+    req.flash("notice", "Failed to update password")
+    const accountData = await accModel.getAccountById(account_id)
+    res.render("account/update", {
+      title: "Update Account",
+      nav,
+      errors: null,
+      account_firstname: accountData.account_firstname,
+      account_lastname: accountData.account_lastname,
+      account_email: accountData.account_email,
+      account_id,
+    })
+  }
+}
+
 module.exports = { 
   buildAccount, 
   buildLogin, 
@@ -232,5 +284,6 @@ module.exports = {
   accountLogin, 
   accountLogout,
   buildAccountUpdate,
-  updateAccount 
+  updateAccount,
+  updatePassword
 }

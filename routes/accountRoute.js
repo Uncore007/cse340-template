@@ -34,6 +34,13 @@ router.post("/update",
     regValidate.checkUpdateAccountData,
     utilities.handleErrors(accController.updateAccount))
 
+// Process password update
+router.post("/update-password",
+    utilities.checkLogin,
+    regValidate.passwordRules(),
+    regValidate.checkPasswordData,
+    utilities.handleErrors(accController.updatePassword))
+
 // Add logout route
 router.get("/logout", utilities.handleErrors(accController.accountLogout))
 

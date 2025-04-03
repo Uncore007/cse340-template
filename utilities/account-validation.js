@@ -121,6 +121,22 @@ validate.updateAccountRules = () => {
   ]
 }
 
+/* **************************************
+* Validation rules for password update
+* ************************************* */
+validate.passwordRules = () => {
+  return [
+    // password is required and must be strong password
+    body("account_password")
+      .trim()
+      .notEmpty()
+      .isLength({ min: 12 })
+      .withMessage("Password must be at least 12 characters")
+      .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$/)
+      .withMessage("Password does not meet requirements.")
+  ]
+}
+
 validate.checkRegData = async (req, res, next) => {
   const { account_firstname, account_lastname, account_email } = req.body
   let errors = []
@@ -170,6 +186,27 @@ validate.checkUpdateAccountData = async (req, res, next) => {
       account_firstname,
       account_lastname,
       account_email,
+      account_id,
+    })
+    return
+  }
+  next()
+}
+
+validate.checkPasswordData = async (req, res, next) => {
+  const { account_password, account_id } = req.body
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    const accountData = await accountModel.getAccountById(account_id)
+    res.render("account/update", {
+      errors,
+      title: "Update Account",
+      nav,
+      account_firstname: accountData.account_firstname,
+      account_lastname: accountData.account_lastname,
+      account_email: accountData.account_email,
       account_id,
     })
     return
