@@ -164,6 +164,26 @@ Util.checkJWTToken = (req, res, next) => {
   }
  }
 
+ /* ****************************************
+*  Check Authorization
+* ************************************ */
+Util.checkAuthorization = (req, res, next) => {
+  console.log(res.locals.accountData)
+  console.log(res.locals.loggedin)
+  if (res.locals.loggedin) {
+    if (res.locals.accountData.account_type === "Admin" || 
+        res.locals.accountData.account_type === "Employee") {
+      next()
+    } else {
+      req.flash("notice", "You don't have permission to access this page.")
+      return res.redirect("/account/login")
+    }
+  } else {
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
+  }
+}
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 

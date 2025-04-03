@@ -22,4 +22,7 @@ router.post('/register',
     regValidate.checkRegData,
     utilities.handleErrors(accController.registerAccount))
 
+// Add logout route
+router.get("/logout", utilities.handleErrors(accController.accountLogout))
+
 module.exports = router;
