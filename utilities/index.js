@@ -65,7 +65,8 @@ Util.buildClassificationGrid = async function(data){
     return grid
 }
 
-Util.buildInventoryView = async function(data){
+// Update the buildInventoryView function
+Util.buildInventoryView = async function(data, isFavorite = false){
   let grid
   if(data !== undefined){
     grid = '<div id="vehicle-details">'
@@ -89,6 +90,23 @@ Util.buildInventoryView = async function(data){
     grid += '<li><span>Body:</span> ' + data.classification_name + '</li>'
     grid += '</ul>'
     grid += '</div>'
+    
+    // Add favorite button or status
+    if (isFavorite) {
+      grid += '<div class="favorite-section">'
+      grid += '<form action="/account/favorites/remove" method="POST">'
+      grid += '<input type="hidden" name="favorite_id" value="' + isFavorite.favorite_id + '">'
+      grid += '<button type="submit" class="remove-favorite-btn">Remove from Favorites</button>'
+      grid += '</form>'
+      grid += '</div>'
+    } else {
+      grid += '<div class="favorite-section">'
+      grid += '<form action="/account/favorites/add" method="POST">'
+      grid += '<input type="hidden" name="inv_id" value="' + data.inv_id + '">'
+      grid += '<button type="submit" class="add-favorite-btn">Add to Favorites</button>'
+      grid += '</form>'
+      grid += '</div>'
+    }
     
     grid += '<div class="cta-container">'
     grid += '<a href="#" class="dealer-cta">Contact Dealer</a>'
