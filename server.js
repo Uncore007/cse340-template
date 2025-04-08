@@ -13,6 +13,7 @@ const expressLayouts = require("express-ejs-layouts")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
+const favoritesRoute = require("./routes/favoritesRoute")
 const utilities = require("./utilities")
 const session = require("express-session")
 const pool = require('./database/')
@@ -70,6 +71,8 @@ app.use("/inv", utilities.handleErrors(inventoryRoute))
 
 // Inventory Routes
 app.use("/account", utilities.handleErrors(accountRoute))
+
+app.use("/account/favorites", utilities.handleErrors(favoritesRoute))
 
 app.get("/trigger-error", utilities.handleErrors(baseController.triggerError))
 

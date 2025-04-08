@@ -557,3 +557,41 @@ nav ul li a {
 .form-button:hover {
   background-color: #3a7bc8;
 }
+
+/* Favorites styling */
+.favorite-section {
+  margin: 15px 0;
+}
+
+.add-favorite-btn, .remove-favorite-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+}
+
+.add-favorite-btn {
+  background-color: #2c5282;
+  color: white;
+}
+
+.add-favorite-btn:hover {
+  background-color: #1e4169;
+}
+
+.remove-favorite-btn {
+  background-color: #e53e3e;
+  color: white;
+}
+
+.remove-favorite-btn:hover {
+  background-color: #c53030;
+}
+
+.favorites-list {
+  margin-top: 20px;
+}
