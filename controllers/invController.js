@@ -93,8 +93,10 @@ invCont.addClassification = async function (req, res) {
       `The ${classification_name} classification was successfully added.`
     )
     let nav = await utilities.getNav()
+    const classificationSelect = await utilities.buildClassificationList()
     res.status(201).render("inventory/management", {
       title: "Inventory Management",
+      classificationSelect,
       nav,
       errors: null,
     })
@@ -159,8 +161,10 @@ invCont.addInventory = async function (req, res) {
       `The ${inv_make} ${inv_model} was successfully added.`
     )
     let nav = await utilities.getNav()
+    const classificationSelect = await utilities.buildClassificationList()
     res.status(201).render("inventory/management", {
       title: "Inventory Management",
+      classificationSelect,
       nav,
       errors: null,
     })
